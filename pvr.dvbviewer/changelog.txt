@@ -1,3 +1,6 @@
+3.6.9
+[added] Store/resume recording watched state on the backend (DMS 2.1.2 or higher required)
+
 3.6.8
 [fixed] Fix stream read chunk size unit
 
