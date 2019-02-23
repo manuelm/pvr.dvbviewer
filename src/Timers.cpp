@@ -52,7 +52,7 @@ bool Timer::isRunning(const std::time_t *now, const std::string *channelName) co
   return true;
 }
 
-void Timers::GetTimerTypes(std::vector<PVR_TIMER_TYPE> &types)
+void Timers::GetTimerTypes(std::vector< std::unique_ptr<PVR_TIMER_TYPE> > &types)
 {
   struct TimerType
     : PVR_TIMER_TYPE
@@ -67,7 +67,6 @@ void Timers::GetTimerTypes(std::vector<PVR_TIMER_TYPE> &types)
         = std::vector< std::pair<int, std::string> >())
     {
       int i;
-      XBMC->Log(LOG_INFO, "memset %d", id);
       memset(this, 0, sizeof(PVR_TIMER_TYPE));
 
       iId         = id;
@@ -124,108 +123,99 @@ void Timers::GetTimerTypes(std::vector<PVR_TIMER_TYPE> &types)
   for (auto &recf : m_cli.GetRecordingFolders())
     groupValues.emplace_back(groupValues.size(), recf);
 
-  /* Timer types definition. */
-  static std::vector< std::unique_ptr<TimerType> > timerTypes;
-  if (timerTypes.size() == 0)
+  /* One-shot manual (time and channel based) */
+  types.emplace_back(std::unique_ptr<TimerType>(new TimerType(
+      Timer::Type::MANUAL_ONCE,
+      PVR_TIMER_TYPE_IS_MANUAL                 |
+      PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
+      PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
+      PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
+      PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
+      PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
+      PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
+      PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
+      "", /* Let Kodi generate the description */
+      priorityValues, groupValues)));
+
+   /* Repeating manual (time and channel based) */
+  types.emplace_back(std::unique_ptr<TimerType>(new TimerType(
+      Timer::Type::MANUAL_REPEATING,
+      PVR_TIMER_TYPE_IS_MANUAL                 |
+      PVR_TIMER_TYPE_IS_REPEATING              |
+      PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
+      PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
+      PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
+      PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
+      PVR_TIMER_TYPE_SUPPORTS_WEEKDAYS         |
+      PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
+      PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
+      PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
+      "", /* Let Kodi generate the description */
+      priorityValues, groupValues)));
+
+   /* One-shot epg based */
+  types.emplace_back(std::unique_ptr<TimerType>(new TimerType(
+      Timer::Type::EPG_ONCE,
+      PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
+      PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
+      PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
+      PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
+      PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
+      PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
+      PVR_TIMER_TYPE_REQUIRES_EPG_TAG_ON_CREATE,
+      "", /* Let Kodi generate the description */
+      priorityValues)));
+
+  if (CanAutoTimers())
   {
-    /* One-shot manual (time and channel based) */
-    timerTypes.emplace_back(std::unique_ptr<TimerType>(new TimerType(
-        Timer::Type::MANUAL_ONCE,
-        PVR_TIMER_TYPE_IS_MANUAL                 |
-        PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
-        PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
-        PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
-        PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
-        PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
-        PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
-        PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
-        "", /* Let Kodi generate the description */
-        priorityValues, groupValues)));
-
-     /* Repeating manual (time and channel based) */
-    timerTypes.emplace_back(std::unique_ptr<TimerType>(new TimerType(
-        Timer::Type::MANUAL_REPEATING,
-        PVR_TIMER_TYPE_IS_MANUAL                 |
-        PVR_TIMER_TYPE_IS_REPEATING              |
-        PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
-        PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
-        PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
-        PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
-        PVR_TIMER_TYPE_SUPPORTS_WEEKDAYS         |
-        PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
-        PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
-        PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
-        "", /* Let Kodi generate the description */
-        priorityValues, groupValues)));
-
-     /* One-shot epg based */
-    timerTypes.emplace_back(std::unique_ptr<TimerType>(new TimerType(
-        Timer::Type::EPG_ONCE,
-        PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
-        PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
-        PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
-        PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
-        PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
-        PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
-        PVR_TIMER_TYPE_REQUIRES_EPG_TAG_ON_CREATE,
-        "", /* Let Kodi generate the description */
-        priorityValues)));
-
-    if (CanAutoTimers())
+    /* PVR_Timer.iPreventDuplicateEpisodes values and presentation.*/
+    static std::vector< std::pair<int, std::string> > deDupValues =
     {
-      /* PVR_Timer.iPreventDuplicateEpisodes values and presentation.*/
-      static std::vector< std::pair<int, std::string> > deDupValues =
-      {
-        { AutoTimer::DeDup::DISABLED,             LocalizedString(30430) },
-        { AutoTimer::DeDup::CHECK_TITLE,          LocalizedString(30431) },
-        { AutoTimer::DeDup::CHECK_SUBTITLE,       LocalizedString(30432) },
-        { AutoTimer::DeDup::CHECK_TITLE_SUBTITLE, LocalizedString(30433) },
-      };
+      { AutoTimer::DeDup::DISABLED,             LocalizedString(30430) },
+      { AutoTimer::DeDup::CHECK_TITLE,          LocalizedString(30431) },
+      { AutoTimer::DeDup::CHECK_SUBTITLE,       LocalizedString(30432) },
+      { AutoTimer::DeDup::CHECK_TITLE_SUBTITLE, LocalizedString(30433) },
+    };
 
-       /* epg auto search */
-      timerTypes.emplace_back(std::unique_ptr<TimerType>(new TimerType(
-          Timer::Type::EPG_AUTO_SEARCH,
-          PVR_TIMER_TYPE_IS_REPEATING                |
-          PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE     |
-          PVR_TIMER_TYPE_SUPPORTS_CHANNELS           |
-          PVR_TIMER_TYPE_SUPPORTS_ANY_CHANNEL        |
-          PVR_TIMER_TYPE_SUPPORTS_FIRST_DAY          |
-          PVR_TIMER_TYPE_SUPPORTS_START_TIME         |
-          PVR_TIMER_TYPE_SUPPORTS_END_TIME           |
-          PVR_TIMER_TYPE_SUPPORTS_START_ANYTIME      |
-          PVR_TIMER_TYPE_SUPPORTS_END_ANYTIME        |
-          PVR_TIMER_TYPE_SUPPORTS_WEEKDAYS           |
-          PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN   |
-          PVR_TIMER_TYPE_SUPPORTS_PRIORITY           |
-          PVR_TIMER_TYPE_SUPPORTS_TITLE_EPG_MATCH    |
-          PVR_TIMER_TYPE_SUPPORTS_FULLTEXT_EPG_MATCH |
-          PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP    |
-          PVR_TIMER_TYPE_SUPPORTS_RECORD_ONLY_NEW_EPISODES,
-          "", /* Let Kodi generate the description */
-          priorityValues, groupValues, deDupValues)));
-      timerTypes.back()->iPreventDuplicateEpisodesDefault =
-          AutoTimer::DeDup::CHECK_TITLE_SUBTITLE;
+     /* epg auto search */
+    types.emplace_back(std::unique_ptr<TimerType>(new TimerType(
+        Timer::Type::EPG_AUTO_SEARCH,
+        PVR_TIMER_TYPE_IS_REPEATING                |
+        PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE     |
+        PVR_TIMER_TYPE_SUPPORTS_CHANNELS           |
+        PVR_TIMER_TYPE_SUPPORTS_ANY_CHANNEL        |
+        PVR_TIMER_TYPE_SUPPORTS_FIRST_DAY          |
+        PVR_TIMER_TYPE_SUPPORTS_START_TIME         |
+        PVR_TIMER_TYPE_SUPPORTS_END_TIME           |
+        PVR_TIMER_TYPE_SUPPORTS_START_ANYTIME      |
+        PVR_TIMER_TYPE_SUPPORTS_END_ANYTIME        |
+        PVR_TIMER_TYPE_SUPPORTS_WEEKDAYS           |
+        PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN   |
+        PVR_TIMER_TYPE_SUPPORTS_PRIORITY           |
+        PVR_TIMER_TYPE_SUPPORTS_TITLE_EPG_MATCH    |
+        PVR_TIMER_TYPE_SUPPORTS_FULLTEXT_EPG_MATCH |
+        PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP    |
+        PVR_TIMER_TYPE_SUPPORTS_RECORD_ONLY_NEW_EPISODES,
+        "", /* Let Kodi generate the description */
+        priorityValues, groupValues, deDupValues)));
+    types.back()->iPreventDuplicateEpisodesDefault =
+        AutoTimer::DeDup::CHECK_TITLE_SUBTITLE;
 
-      /* One-shot created by epg auto search */
-      timerTypes.emplace_back(std::unique_ptr<TimerType>(new TimerType(
-          Timer::Type::EPG_AUTO_ONCE,
-          PVR_TIMER_TYPE_IS_MANUAL                 |
-          PVR_TIMER_TYPE_FORBIDS_NEW_INSTANCES     |
-          PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
-          PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
-          PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
-          PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
-          PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
-          PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
-          PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
-          LocalizedString(30420),
-          priorityValues, groupValues)));
-    }
+    /* One-shot created by epg auto search */
+    types.emplace_back(std::unique_ptr<TimerType>(new TimerType(
+        Timer::Type::EPG_AUTO_ONCE,
+        PVR_TIMER_TYPE_IS_MANUAL                 |
+        PVR_TIMER_TYPE_FORBIDS_NEW_INSTANCES     |
+        PVR_TIMER_TYPE_SUPPORTS_ENABLE_DISABLE   |
+        PVR_TIMER_TYPE_SUPPORTS_CHANNELS         |
+        PVR_TIMER_TYPE_SUPPORTS_START_TIME       |
+        PVR_TIMER_TYPE_SUPPORTS_END_TIME         |
+        PVR_TIMER_TYPE_SUPPORTS_START_END_MARGIN |
+        PVR_TIMER_TYPE_SUPPORTS_PRIORITY         |
+        PVR_TIMER_TYPE_SUPPORTS_RECORDING_GROUP,
+        LocalizedString(30420),
+        priorityValues, groupValues)));
   }
-
-  /* Copy data to target array. */
-  for (auto &timerType : timerTypes)
-    types.emplace_back(*timerType);
 }
 
 Timers::Error Timers::RefreshAllTimers(bool &changes)
