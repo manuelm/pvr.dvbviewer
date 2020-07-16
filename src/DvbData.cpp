@@ -480,6 +480,8 @@ PVR_ERROR Dvb::GetChannelGroupsAmount(int& amount)
 PVR_ERROR Dvb::GetTimerTypes(std::vector<kodi::addon::PVRTimerType>& types)
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
+  if (!IsConnected())
+    return PVR_ERROR_NO_ERROR;
   std::vector< std::unique_ptr<kodi::addon::PVRTimerType> > timerTypes;
   {
     CLockObject lock(m_mutex);
@@ -1648,6 +1650,7 @@ bool Dvb::CheckBackendVersion()
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
   const httpResponse &res = GetFromAPI("api/version.html");
+  kodi::Log(ADDON_LOG_DEBUG, "after getfromapi");
   if (res.error)
   {
     SetConnectionState((res.code == 401) ? PVR_CONNECTION_STATE_ACCESS_DENIED
@@ -1656,7 +1659,9 @@ bool Dvb::CheckBackendVersion()
   }
 
   TiXmlDocument doc;
+  kodi::Log(ADDON_LOG_DEBUG, "before parse");
   doc.Parse(res.content.c_str());
+  kodi::Log(ADDON_LOG_DEBUG, "after parse");
   if (doc.Error())
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to connect to the backend server. Error: %s",
