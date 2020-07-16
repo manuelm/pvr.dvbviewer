@@ -194,12 +194,14 @@ PVR_ERROR Dvb::GetCapabilities(kodi::addon::PVRCapabilities& capabilities)
 
 PVR_ERROR Dvb::GetBackendName(std::string& name)
 {
+  CLockObject lock(m_mutex);
   name = (!IsConnected()) ? "not connected" : m_backendName;
   return PVR_ERROR_NO_ERROR;
 }
 
 PVR_ERROR Dvb::GetBackendVersion(std::string& version)
 {
+  CLockObject lock(m_mutex);
   version = StringUtils::Format("%u.%u.%u.%u", m_backendVersion >> 24 & 0xFF,
       m_backendVersion >> 16 & 0xFF, m_backendVersion >> 8  & 0xFF, m_backendVersion & 0xFF);
   return PVR_ERROR_NO_ERROR;
@@ -207,6 +209,7 @@ PVR_ERROR Dvb::GetBackendVersion(std::string& version)
 
 PVR_ERROR Dvb::GetBackendHostname(std::string& hostname)
 {
+  CLockObject lock(m_mutex);
   hostname = StringUtils::Format("%s:%u", m_settings.m_hostname.c_str(),
       m_settings.m_webPort);
 
@@ -217,6 +220,7 @@ PVR_ERROR Dvb::GetBackendHostname(std::string& hostname)
 
 PVR_ERROR Dvb::GetConnectionString(std::string& connection)
 {
+  CLockObject lock(m_mutex);
   connection = m_settings.m_hostname;
   return PVR_ERROR_NO_ERROR;
 }
@@ -233,6 +237,7 @@ PVR_ERROR Dvb::GetDriveSpace(uint64_t& total, uint64_t& used)
 
 unsigned int Dvb::GetBackendVersion()
 {
+  CLockObject lock(m_mutex);
   return m_backendVersion;
 }
 
@@ -1606,6 +1611,7 @@ bool Dvb::CheckBackendVersion()
     return false;
   }
 
+  CLockObject lock(m_mutex);
   m_backendVersion = 0;
   kodi::Log(ADDON_LOG_INFO, "Checking backend version...");
   if (doc.RootElement()->QueryUnsignedAttribute("iver", &m_backendVersion)
@@ -1696,7 +1702,7 @@ void Dvb::SetConnectionState(PVR_CONNECTION_STATE state,
 {
   if (state != m_state)
   {
-    kodi::Log(ADDON_LOG_DEBUG, "Connection state change (%d -> %d)", m_state, state);
+    kodi::Log(ADDON_LOG_DEBUG, "Connection state change (%d -> %d)", m_state.load(), state);
     m_state = state;
 
     std::string tmp("");
