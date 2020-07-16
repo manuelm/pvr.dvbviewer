@@ -1259,6 +1259,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
    * CURLOpen fails on http!=2xy responses and the underlaying handle gets
    * deleted. So we can't parse the status line anymore.
    */
+  kodi::Log(ADDON_LOG_DEBUG, "%s open", __FUNCTION__);
   if (!res.file.CURLOpen(ADDON_READ_NO_CACHE))
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to open url: %s", url.c_str());
@@ -1266,6 +1267,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
     return res;
   }
 
+  kodi::Log(ADDON_LOG_DEBUG, "%s GetPropertyValue", __FUNCTION__);
   std::string status = res.file.GetPropertyValue(ADDON_FILE_PROPERTY_RESPONSE_PROTOCOL, "");
   if (status.empty())
   {
@@ -1275,6 +1277,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
     return res;
   }
 
+  kodi::Log(ADDON_LOG_DEBUG, "%s stringstream", __FUNCTION__);
   std::istringstream ss(status);
   ss.ignore(10, ' ');
   ss >> res.code;
@@ -1297,6 +1300,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
     return res;
   }
 
+  kodi::Log(ADDON_LOG_DEBUG, "%s end", __FUNCTION__);
   res.error = false;
   return res;
 }
