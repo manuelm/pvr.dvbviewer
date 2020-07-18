@@ -1311,6 +1311,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, ...)
   va_list args;
   va_start(args, format);
   httpResponse &&res = OpenFromAPI(format, args);
+  kodi::Log(ADDON_LOG_DEBUG, "%s after", __FUNCTION__);
   va_end(args);
   return res;
 }
@@ -1321,15 +1322,19 @@ Dvb::httpResponse Dvb::GetFromAPI(const char* format, ...)
   va_list args;
   va_start(args, format);
   httpResponse &&res = OpenFromAPI(format, args);
+  kodi::Log(ADDON_LOG_DEBUG, "%s after2", __FUNCTION__);
   va_end(args);
 
   if (res.file.IsOpen())
   {
     char buffer[1024];
+    kodi::Log(ADDON_LOG_DEBUG, "%s read", __FUNCTION__);
     while (ssize_t bytesRead = res.file.Read(buffer, 1024))
       res.content.append(buffer, bytesRead);
     res.file.Close();
+    kodi::Log(ADDON_LOG_DEBUG, "%s read end", __FUNCTION__);
   }
+  kodi::Log(ADDON_LOG_DEBUG, "%s end", __FUNCTION__);
   return std::move(res);
 }
 
