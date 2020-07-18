@@ -1328,8 +1328,9 @@ Dvb::httpResponse Dvb::GetFromAPI(const char* format, ...)
   if (res.file.IsOpen())
   {
     char buffer[1024];
+    ssize_t bytesRead;
     kodi::Log(ADDON_LOG_DEBUG, "%s read", __FUNCTION__);
-    while (ssize_t bytesRead = res.file.Read(buffer, 1024))
+    while ((bytesRead = res.file.Read(buffer, sizeof(buffer))) > 0)
       res.content.append(buffer, bytesRead);
     res.file.Close();
     kodi::Log(ADDON_LOG_DEBUG, "%s read end", __FUNCTION__);
@@ -1511,7 +1512,8 @@ bool Dvb::LoadChannels()
 
     std::string content;
     char buffer[1024];
-    while (ssize_t bytesRead = fileHandle.Read(buffer, 1024))
+    ssize_t bytesRead;
+    while ((bytesRead = fileHandle.Read(buffer, sizeof(buffer))) > 0)
       content.append(buffer, bytesRead);
     fileHandle.Close();
 
