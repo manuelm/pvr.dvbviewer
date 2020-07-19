@@ -298,17 +298,17 @@ PVR_ERROR Dvb::GetEPGForChannel(int channelUid, time_t start,
 
   DvbChannel *channel = GetChannel(channelUid);
 
-  const httpResponse &res = GetFromAPI("api/epg.html?lvl=2&channel=%" PRIu64
+  std::unique_ptr<const httpResponse> res = GetFromAPI("api/epg.html?lvl=2&channel=%" PRIu64
       "&start=%f&end=%f", channel->epgId, start/86400.0 + DELPHI_DATE,
       end/86400.0 + DELPHI_DATE);
-  if (res.error)
+  if (res->error)
   {
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return PVR_ERROR_SERVER_ERROR;
   }
 
   TiXmlDocument doc;
-  doc.Parse(res.content.c_str());
+  doc.Parse(res->content.c_str());
   if (doc.Error())
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to parse EPG. Error: %s",
@@ -615,16 +615,16 @@ PVR_ERROR Dvb::GetRecordings(bool deleted,
     return PVR_ERROR_SERVER_ERROR;
 
   CLockObject lock(m_mutex);
-  httpResponse &&res = GetFromAPI("api/recordings.html?utf8=1&images=1");
-  if (res.error)
+  std::unique_ptr<httpResponse> res = GetFromAPI("api/recordings.html?utf8=1&images=1");
+  if (res->error)
   {
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return PVR_ERROR_SERVER_ERROR;
   }
 
   TiXmlDocument doc;
-  RemoveNullChars(res.content);
-  doc.Parse(res.content.c_str());
+  RemoveNullChars(res->content);
+  doc.Parse(res->content.c_str());
   if (doc.Error())
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to parse recordings. Error: %s",
@@ -800,9 +800,9 @@ PVR_ERROR Dvb::DeleteRecording(const kodi::addon::PVRRecording& recording)
     return PVR_ERROR_REJECTED;
   }
 
-  const httpResponse &res = GetFromAPI("api/recdelete.html?recid=%s&delfile=1",
+  std::unique_ptr<const httpResponse> res = GetFromAPI("api/recdelete.html?recid=%s&delfile=1",
       recording.GetRecordingId().c_str());
-  if (res.error)
+  if (res->error)
     return PVR_ERROR_FAILED;
   kodi::addon::CInstancePVRClient::TriggerRecordingUpdate();
   return PVR_ERROR_NO_ERROR;
@@ -918,14 +918,14 @@ PVR_ERROR Dvb::GetRecordingEdl(const kodi::addon::PVRRecording& recinfo,
     return PVR_ERROR_NOT_IMPLEMENTED;
   }
 
-  httpResponse&& res = OpenFromAPI("api/sideload.html?rec=1&file=.edl"
+  std::unique_ptr<httpResponse> res = OpenFromAPI("api/sideload.html?rec=1&file=.edl"
     "&fileid=%s", recinfo.GetRecordingId().c_str());
-  if (res.error)
+  if (res->error)
     return PVR_ERROR_NO_ERROR; // no EDL file found
 
   size_t lineNumber = 0;
   std::string buffer;
-  while(res.file.ReadLine(buffer))
+  while(res->file.ReadLine(buffer))
   {
     float start = 0.0f, stop = 0.0f;
     unsigned int type = PVR_EDL_TYPE_CUT;
@@ -956,7 +956,7 @@ PVR_ERROR Dvb::GetRecordingEdl(const kodi::addon::PVRRecording& recinfo,
     edl.emplace_back(entry);
   }
 
-  res.file.Close();
+  res->file.Close();
   return PVR_ERROR_NO_ERROR;
 }
 
@@ -1234,24 +1234,24 @@ void *Dvb::Process()
   return nullptr;
 }
 
-Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
+std::unique_ptr<Dvb::httpResponse> Dvb::OpenFromAPI(const char* format, va_list args)
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
   static const std::string baseUrl = m_settings.BaseURL(false);
   std::string url = baseUrl + StringUtils::FormatV(format, args);
 
-  httpResponse res;
-  if (!res.file.CURLCreate(url))
+  std::unique_ptr<httpResponse> res = std::make_unique<httpResponse>();
+  if (!res->file.CURLCreate(url))
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to create curl handle for %s", url.c_str());
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return res;
   }
 
-  res.file.CURLAddOption(ADDON_CURL_OPTION_PROTOCOL, "user-agent", "Kodi PVR");
-  res.file.CURLAddOption(ADDON_CURL_OPTION_HEADER, "Accept", "text/xml");
+  res->file.CURLAddOption(ADDON_CURL_OPTION_PROTOCOL, "user-agent", "Kodi PVR");
+  res->file.CURLAddOption(ADDON_CURL_OPTION_HEADER, "Accept", "text/xml");
   if (!m_settings.m_username.empty() && !m_settings.m_password.empty())
-    res.file.CURLAddOption(ADDON_CURL_OPTION_CREDENTIALS,
+    res->file.CURLAddOption(ADDON_CURL_OPTION_CREDENTIALS,
         m_settings.m_username, m_settings.m_password);
 
   /*
@@ -1260,19 +1260,19 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
    * deleted. So we can't parse the status line anymore.
    */
   kodi::Log(ADDON_LOG_DEBUG, "%s open", __FUNCTION__);
-  if (!res.file.CURLOpen(ADDON_READ_NO_CACHE))
+  if (!res->file.CURLOpen(ADDON_READ_NO_CACHE))
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to open url: %s", url.c_str());
-    res.file.Close();
+    res->file.Close();
     return res;
   }
 
   kodi::Log(ADDON_LOG_DEBUG, "%s GetPropertyValue", __FUNCTION__);
-  std::string status = res.file.GetPropertyValue(ADDON_FILE_PROPERTY_RESPONSE_PROTOCOL, "");
+  std::string status = res->file.GetPropertyValue(ADDON_FILE_PROPERTY_RESPONSE_PROTOCOL, "");
   if (status.empty())
   {
     kodi::Log(ADDON_LOG_ERROR, "Endpoint %s didn't return a status line.", url.c_str());
-    res.file.Close();
+    res->file.Close();
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return res;
   }
@@ -1280,81 +1280,81 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
   kodi::Log(ADDON_LOG_DEBUG, "%s stringstream", __FUNCTION__);
   std::istringstream ss(status);
   ss.ignore(10, ' ');
-  ss >> res.code;
+  ss >> res->code;
   if (!ss.good())
   {
     kodi::Log(ADDON_LOG_ERROR, "Endpoint %s returned an invalid status line: %s",
         url.c_str(), status.c_str());
-    res.file.Close();
+    res->file.Close();
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return res;
   }
 
   // everything non 2xx is an error
   // NOTE: this doesn't work for now. see above
-  if (res.code >= 300)
+  if (res->code >= 300)
   {
     kodi::Log(ADDON_LOG_INFO, "Endpoint %s returned non-successful status code %hu",
-        url.c_str(), res.code);
-    res.file.Close();
+        url.c_str(), res->code);
+    res->file.Close();
     return res;
   }
 
   kodi::Log(ADDON_LOG_DEBUG, "%s end", __FUNCTION__);
-  res.error = false;
+  res->error = false;
   return res;
 }
 
-Dvb::httpResponse Dvb::OpenFromAPI(const char* format, ...)
+std::unique_ptr<Dvb::httpResponse> Dvb::OpenFromAPI(const char* format, ...)
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
   va_list args;
   va_start(args, format);
-  httpResponse &&res = OpenFromAPI(format, args);
+  std::unique_ptr<httpResponse> res = OpenFromAPI(format, args);
   kodi::Log(ADDON_LOG_DEBUG, "%s after", __FUNCTION__);
   va_end(args);
   return res;
 }
 
-Dvb::httpResponse Dvb::GetFromAPI(const char* format, ...)
+std::unique_ptr<Dvb::httpResponse> Dvb::GetFromAPI(const char* format, ...)
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
   va_list args;
   va_start(args, format);
-  httpResponse &&res = OpenFromAPI(format, args);
+  std::unique_ptr<httpResponse> res = OpenFromAPI(format, args);
   kodi::Log(ADDON_LOG_DEBUG, "%s after2", __FUNCTION__);
   va_end(args);
 
-  if (res.file.IsOpen())
+  if (res->file.IsOpen())
   {
     char buffer[1024];
     ssize_t bytesRead;
     kodi::Log(ADDON_LOG_DEBUG, "%s read", __FUNCTION__);
-    while ((bytesRead = res.file.Read(buffer, sizeof(buffer))) > 0)
+    while ((bytesRead = res->file.Read(buffer, sizeof(buffer))) > 0)
     {
-      kodi::Log(ADDON_LOG_DEBUG, "%s read %lu", __FUNCTION__, bytesRead);
-      res.content.append(buffer, bytesRead);
+      kodi::Log(ADDON_LOG_DEBUG, "%s read %ld", __FUNCTION__, bytesRead);
+      res->content.append(buffer, bytesRead);
     }
-    kodi::Log(ADDON_LOG_DEBUG, "%s read end %lu %d", __FUNCTION__, bytesRead, res.file.IsOpen());
-    res.file.Close();
+    kodi::Log(ADDON_LOG_DEBUG, "%s read end %ld %d", __FUNCTION__, bytesRead, res->file.IsOpen());
+    res->file.Close();
   }
   kodi::Log(ADDON_LOG_DEBUG, "%s end", __FUNCTION__);
-  return std::move(res);
+  return res;
 }
 
 bool Dvb::LoadChannels()
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
-  const httpResponse &res = GetFromAPI("api/getchannelsxml.html"
+  std::unique_ptr<const httpResponse> res = GetFromAPI("api/getchannelsxml.html"
       "?fav=1&subchannels=1&logo=1");
-  if (res.error)
+  if (res->error)
   {
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return false;
   }
 
   TiXmlDocument doc;
-  doc.Parse(res.content.c_str());
+  doc.Parse(res->content.c_str());
   if (doc.Error())
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to parse channels. Error: %s",
@@ -1663,18 +1663,18 @@ DvbChannel *Dvb::GetChannel(std::function<bool (const DvbChannel*)> func)
 bool Dvb::CheckBackendVersion()
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
-  const httpResponse &res = GetFromAPI("api/version.html");
+  std::unique_ptr<const httpResponse> res = GetFromAPI("api/version.html");
   kodi::Log(ADDON_LOG_DEBUG, "after getfromapi");
-  if (res.error)
+  if (res->error)
   {
-    SetConnectionState((res.code == 401) ? PVR_CONNECTION_STATE_ACCESS_DENIED
+    SetConnectionState((res->code == 401) ? PVR_CONNECTION_STATE_ACCESS_DENIED
       : PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return false;
   }
 
   TiXmlDocument doc;
   kodi::Log(ADDON_LOG_DEBUG, "before parse");
-  doc.Parse(res.content.c_str());
+  doc.Parse(res->content.c_str());
   kodi::Log(ADDON_LOG_DEBUG, "after parse");
   if (doc.Error())
   {
@@ -1714,15 +1714,15 @@ bool Dvb::CheckBackendVersion()
 bool Dvb::UpdateBackendStatus(bool updateSettings)
 {
   kodi::Log(ADDON_LOG_DEBUG, "%s", __FUNCTION__);
-  const httpResponse &res = GetFromAPI("api/status2.html");
-  if (res.error)
+  std::unique_ptr<const httpResponse> res = GetFromAPI("api/status2.html");
+  if (res->error)
   {
     SetConnectionState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
     return false;
   }
 
   TiXmlDocument doc;
-  doc.Parse(res.content.c_str());
+  doc.Parse(res->content.c_str());
   if (doc.Error())
   {
     kodi::Log(ADDON_LOG_ERROR, "Unable to get backend status. Error: %s",

@@ -19,6 +19,7 @@
 
 #include <list>
 #include <map>
+#include <memory>
 #include <functional>
 #include <atomic>
 
@@ -231,9 +232,9 @@ public:
       unsigned short code = 0;
       std::string content;
   };
-  httpResponse OpenFromAPI(const char* format, va_list args);
-  httpResponse OpenFromAPI(const char* format, ...);
-  httpResponse GetFromAPI(const char* format, ...);
+  std::unique_ptr<httpResponse> OpenFromAPI(const char* format, va_list args);
+  std::unique_ptr<httpResponse> OpenFromAPI(const char* format, ...);
+  std::unique_ptr<httpResponse> GetFromAPI(const char* format, ...);
 
 protected:
   virtual void *Process(void) override;
