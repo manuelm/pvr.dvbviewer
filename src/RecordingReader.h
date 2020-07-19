@@ -24,7 +24,7 @@ public:
       const std::pair<std::time_t, std::time_t> &startEnd);
   ~RecordingReader(void);
   bool Start();
-  ssize_t ReadData(unsigned char *buffer, unsigned int size);
+  size_t ReadData(unsigned char *buffer, unsigned int size);
   int64_t Seek(long long position, int whence);
   int64_t Position();
   int64_t Length();

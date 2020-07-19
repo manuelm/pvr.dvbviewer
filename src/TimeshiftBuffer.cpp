@@ -77,10 +77,10 @@ void TimeshiftBuffer::DoReadWrite()
   m_strReader->Start();
   while (m_running)
   {
-    ssize_t read = m_strReader->ReadData(buffer, sizeof(buffer));
+    size_t read = m_strReader->ReadData(buffer, sizeof(buffer));
 
     // don't handle any errors here, assume write fully succeeds
-    ssize_t write = m_filebufferWriteHandle.Write(buffer, read);
+    size_t write = m_filebufferWriteHandle.Write(buffer, read);
 
     std::lock_guard<std::mutex> lock(m_mutex);
     m_writePos += write;
@@ -106,7 +106,7 @@ int64_t TimeshiftBuffer::Length()
   return m_writePos;
 }
 
-ssize_t TimeshiftBuffer::ReadData(unsigned char *buffer, unsigned int size)
+size_t TimeshiftBuffer::ReadData(unsigned char *buffer, unsigned int size)
 {
   int64_t requiredLength = Position() + size;
 

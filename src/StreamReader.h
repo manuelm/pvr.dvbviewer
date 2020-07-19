@@ -24,7 +24,7 @@ public:
       const Settings &settings);
   ~StreamReader(void);
   bool Start() override;
-  ssize_t ReadData(unsigned char *buffer, unsigned int size) override;
+  size_t ReadData(unsigned char *buffer, unsigned int size) override;
   int64_t Seek(long long position, int whence) override;
   int64_t Position() override;
   int64_t Length() override;

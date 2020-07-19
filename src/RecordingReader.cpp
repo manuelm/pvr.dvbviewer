@@ -45,7 +45,7 @@ bool RecordingReader::Start()
   return m_readHandle.IsOpen();
 }
 
-ssize_t RecordingReader::ReadData(unsigned char *buffer, unsigned int size)
+size_t RecordingReader::ReadData(unsigned char *buffer, unsigned int size)
 {
   /* check for playback of ongoing recording */
   if (m_timeEnd)
@@ -75,7 +75,7 @@ ssize_t RecordingReader::ReadData(unsigned char *buffer, unsigned int size)
     }
   }
 
-  ssize_t read = m_readHandle.Read(buffer, size);
+  size_t read = m_readHandle.Read(buffer, size);
   m_pos += read;
   return read;
 }

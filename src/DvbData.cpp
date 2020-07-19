@@ -1332,10 +1332,10 @@ Dvb::httpResponse Dvb::GetFromAPI(const char* format, ...)
     kodi::Log(ADDON_LOG_DEBUG, "%s read", __FUNCTION__);
     while ((bytesRead = res.file.Read(buffer, sizeof(buffer))) > 0)
     {
-      kodi::Log(ADDON_LOG_DEBUG, "%s read %lu", __FUNCTION__, bytesRead);
+      kodi::Log(ADDON_LOG_DEBUG, "%s read %ld", __FUNCTION__, bytesRead);
       res.content.append(buffer, bytesRead);
     }
-    kodi::Log(ADDON_LOG_DEBUG, "%s read end %lu %d", __FUNCTION__, bytesRead, res.file.IsOpen());
+    kodi::Log(ADDON_LOG_DEBUG, "%s read end %ld %d", __FUNCTION__, bytesRead, res.file.IsOpen());
     res.file.Close();
   }
   kodi::Log(ADDON_LOG_DEBUG, "%s end", __FUNCTION__);
