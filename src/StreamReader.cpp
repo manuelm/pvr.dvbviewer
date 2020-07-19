@@ -36,7 +36,7 @@ bool StreamReader::Start()
       | ADDON_READ_NO_CACHE);
 }
 
-size_t StreamReader::ReadData(unsigned char *buffer, unsigned int size)
+ssize_t StreamReader::ReadData(unsigned char *buffer, unsigned int size)
 {
   return m_streamHandle.Read(buffer, size);
 }

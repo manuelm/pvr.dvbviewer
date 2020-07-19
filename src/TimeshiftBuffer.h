@@ -30,7 +30,7 @@ public:
       const Settings &settings);
   ~TimeshiftBuffer(void);
   bool Start() override;
-  size_t ReadData(unsigned char *buffer, unsigned int size) override;
+  ssize_t ReadData(unsigned char *buffer, unsigned int size) override;
   int64_t Seek(long long position, int whence) override;
   int64_t Position() override;
   int64_t Length() override;
