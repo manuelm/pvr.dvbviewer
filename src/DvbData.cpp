@@ -1277,7 +1277,7 @@ Dvb::httpResponse Dvb::OpenFromAPI(const char* format, va_list args)
     return res;
   }
 
-  kodi::Log(ADDON_LOG_DEBUG, "%s stringstream %s", __FUNCTION__, status.c_str());
+  kodi::Log(ADDON_LOG_DEBUG, "%s stringstream", __FUNCTION__);
   std::istringstream ss(status);
   ss.ignore(10, ' ');
   ss >> res.code;
@@ -1328,7 +1328,7 @@ Dvb::httpResponse Dvb::GetFromAPI(const char* format, ...)
   if (res.file.IsOpen())
   {
     char buffer[1024];
-    size_t bytesRead;
+    ssize_t bytesRead;
     kodi::Log(ADDON_LOG_DEBUG, "%s read", __FUNCTION__);
     while ((bytesRead = res.file.Read(buffer, sizeof(buffer))) > 0)
     {
@@ -1515,7 +1515,7 @@ bool Dvb::LoadChannels()
 
     std::string content;
     char buffer[1024];
-    size_t bytesRead;
+    ssize_t bytesRead;
     while ((bytesRead = fileHandle.Read(buffer, sizeof(buffer))) > 0)
       content.append(buffer, bytesRead);
     fileHandle.Close();
