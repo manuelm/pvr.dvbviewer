@@ -70,7 +70,7 @@
     <summary lang="vi_VN">Giao tiếp của Kodi cho DVBViewer</summary>
     <summary lang="zh_CN">Kodi 的 DVBViewer 前端</summary>
     <summary lang="zh_TW">Kodi的前端DVBViewer</summary>
-    <description lang="af_ZA">DVBViewer Opname Diens voorprogram; ondersteun stroom van lewendige TV, Tydhouers, Opnames &amp; EPG. Om die XML uittree vanaf die RS webkoppelvlak te ontleed word die xmlParser biblioteek gebruik, ontwikkel deur Frank Vanden Berghen (http://www.applied-mathematics.net/tools/xmlParser.html). Baie dankie hiervoor!</description>
+    <description lang="af_ZA">DVBViewer Media Bediener; ondersteun stroom van lewendige TV &amp; Opnames, EPG, Tydhouers.</description>
     <description lang="be_BY">DVBViewer Media Server frontend; supporting streaming of LiveTV, Timers, Recordings &amp; EPG. For parsing the XML output from the RS webinterface it uses the xmlParser library developed by Frank Vanden Berghen (http://www.applied-mathematics.net/tools/xmlParser.html). Many thanks for this!</description>
     <description lang="bg_BG">Медиен сървър DVBViewer: поддържа поточно предаване на телевизия на живо и записи, справочник и броячи.</description>
     <description lang="ca_ES">Frontal del servei d&apos;enregistrament de DVBViewer; compatible amb la transmissió de TV en directe, temporitzadors, enregistraments i guia electrònica de programació (EPG).</description>
@@ -138,7 +138,7 @@
     <disclaimer lang="en_NZ">This is unstable software! The authors are in no way responsible for failed recordings, incorrect timers, wasted hours, or any other undesirable effects.</disclaimer>
     <disclaimer lang="en_US">This is unstable software! The authors are in no way responsible for failed recordings, incorrect timers, wasted hours, or any other undesirable effects.</disclaimer>
     <disclaimer lang="es_AR">¡Este software es inestable! Los autores no se responsabilizan por grabaciones fallidas, temporizadores incorrectos, horas perdidas, o cualquier otro efecto no deseado.</disclaimer>
-    <disclaimer lang="es_ES">Los autores no se responsabilizan en modo alguno de grabaciones fallidas, temporizadores incorrectos, horas perdidas o cualquier otro efecto no deseado.</disclaimer>
+    <disclaimer lang="es_ES">Los autores no se responsabilizan en modo alguno de grabaciones erroneas, temporizadores incorrectos, horas perdidas o cualquier otro efecto no deseado.</disclaimer>
     <disclaimer lang="es_MX">¡Esto es software inestable! Los autores no son de ninguna manera responsables por grabaciones fallidas, temporizadores incorrectos, horas perdidas o cualquier otro efecto no deseado.</disclaimer>
     <disclaimer lang="et_EE">See on ebastabiilne tarkvara! Autorid ei ole kuidagi moodi vastutavad nurjunud salvestiste, ebaõige aegrelee, raisatud tundide ega muude soovimatute asjade eest.</disclaimer>
     <disclaimer lang="eu_ES">Egilea ez da arduratzen grabazioa erroreetaz, kronometro erroreetaz, ordu galduetaz edo beste edozein ondorio ezerosotaz.</disclaimer>
