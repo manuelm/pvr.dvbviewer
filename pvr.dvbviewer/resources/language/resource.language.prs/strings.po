@@ -5,17 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: KODI Main\n"
-"Report-Msgid-Bugs-To: translations@kodi.tv\n"
+"Report-Msgid-Bugs-To: https://github.com/xbmc/xbmc/issues/\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2025-07-28 01:31+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Mongolian <https://kodi.weblate.cloud/projects/kodi-add-ons-pvr-clients/pvr-dvbviewer/mn_mn/>\n"
-"Language: mn_mn\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: prs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.2\n"
 
 msgctxt "Addon Summary"
 msgid "Kodi's frontend for DVBViewer"
@@ -27,9 +26,9 @@ msgstr ""
 
 msgctxt "Addon Disclaimer"
 msgid "The authors are in no way responsible for failed recordings, incorrect timers, wasted hours, or any other undesirable effects."
-msgstr "Тус програм нь гүйцэд хийгдэж дуусаагүй! Зохиогч нь алдаатай бичлэг, цагийн буруу хөтлөлт, алдагдсан цаг хугацаа эсвэл бусад ямар нэгэн хүсээгүй үр дүнд хариуцлага хүлээхгүй."
+msgstr ""
 
-# settings labels
+#settings labels
 msgctxt "#30000"
 msgid "DVBViewer Media Server IP Address"
 msgstr ""
@@ -40,11 +39,11 @@ msgstr ""
 
 msgctxt "#30002"
 msgid "Username"
-msgstr "Хэрэглэгчийн нэр"
+msgstr ""
 
 msgctxt "#30003"
 msgid "Password"
-msgstr "Нууц үг"
+msgstr ""
 
 msgctxt "#30004"
 msgid "Use Wake-on-LAN to wake up service"
@@ -52,13 +51,13 @@ msgstr ""
 
 msgctxt "#30005"
 msgid "MAC address"
-msgstr "MAC хаяг"
+msgstr ""
 
 msgctxt "#30006"
 msgid "Profile ID"
 msgstr ""
 
-# empty strings from id 30007 to 30009
+#empty strings from id 30007 to 30009
 msgctxt "#30010"
 msgid "Use favourites instead of channel list"
 msgstr ""
@@ -71,7 +70,7 @@ msgctxt "#30012"
 msgid "Select the favourites.xml file"
 msgstr ""
 
-# empty strings from id 30013 to 30019
+#empty strings from id 30013 to 30019
 msgctxt "#30020"
 msgid "Enable Timeshift"
 msgstr ""
@@ -80,9 +79,10 @@ msgctxt "#30021"
 msgid "Timeshift buffer path"
 msgstr ""
 
+#empty strings from id 30022 to 30024
 msgctxt "#30025"
 msgid "Off"
-msgstr "Хаах"
+msgstr ""
 
 msgctxt "#30026"
 msgid "On playback"
@@ -92,7 +92,7 @@ msgctxt "#30027"
 msgid "On pause"
 msgstr ""
 
-# empty strings from id 30028 to 30039
+#empty strings from id 30028 to 30039
 msgctxt "#30040"
 msgid "Enable low performance mode (disables logos & thumbnails)"
 msgstr ""
@@ -105,7 +105,7 @@ msgctxt "#30042"
 msgid "Stream read chunk size (0 for Kodi's default)"
 msgstr ""
 
-# empty strings from id 30043 to 30049
+#empty strings from id 30043 to 30049
 msgctxt "#30050"
 msgid "Group recordings"
 msgstr ""
@@ -138,7 +138,7 @@ msgctxt "#30057"
 msgid "by title"
 msgstr ""
 
-# empty strings from id 30058 to 30059
+#empty strings from id 30058 to 30059
 msgctxt "#30060"
 msgid "Put outline (e.g. subtitles) before plot"
 msgstr ""
@@ -159,13 +159,14 @@ msgctxt "#30064"
 msgid "Always"
 msgstr ""
 
+#empty strings from id 30065 to 30069
 msgctxt "#30070"
 msgid "Enable transcoding"
-msgstr "Код хөрвүүлэлтийг идэвхижүүлэх"
+msgstr ""
 
 msgctxt "#30071"
 msgid "Off"
-msgstr "Хаах"
+msgstr ""
 
 msgctxt "#30072"
 msgid "TS"
@@ -179,12 +180,12 @@ msgctxt "#30074"
 msgid "FLV"
 msgstr ""
 
-# empty strings from id 30075 to 30076
+#empty strings from id 30075 to 30076
 msgctxt "#30077"
 msgid "Transcoding URL parameters"
 msgstr ""
 
-# empty strings from id 30078 to 30079
+#empty strings from id 30078 to 30079
 msgctxt "#30080"
 msgid "Enable EDL support"
 msgstr ""
@@ -197,9 +198,11 @@ msgctxt "#30082"
 msgid "Stop time padding"
 msgstr ""
 
+#empty strings from id 30083 to 30099
+#sections
 msgctxt "#30100"
 msgid "General"
-msgstr "Ерөнхий"
+msgstr ""
 
 msgctxt "#30101"
 msgid "Advanced"
@@ -207,14 +210,14 @@ msgstr ""
 
 msgctxt "#30102"
 msgid "Recordings"
-msgstr "Бичлэгүүд"
+msgstr ""
 
 msgctxt "#30103"
 msgid "Live TV"
-msgstr "ТВ"
+msgstr ""
 
-# empty strings from id 30104 to 30109
-# subsection labels
+#empty strings from id 30104 to 30109
+#subsection labels
 msgctxt "#30110"
 msgid "Wake-on-LAN"
 msgstr ""
@@ -235,9 +238,11 @@ msgctxt "#30114"
 msgid "Transcoding"
 msgstr ""
 
+#empty strings from id 30115 to 30399
+#timers
 msgctxt "#30400"
 msgid "Default"
-msgstr "Үндсэн"
+msgstr ""
 
 msgctxt "#30401"
 msgid "Unimportant (Lowest)"
@@ -245,33 +250,34 @@ msgstr ""
 
 msgctxt "#30402"
 msgid "Low"
-msgstr "Бага"
+msgstr ""
 
 msgctxt "#30403"
 msgid "Normal"
-msgstr "Энгийн"
+msgstr ""
 
 msgctxt "#30404"
 msgid "High"
-msgstr "Өндөр"
+msgstr ""
 
 msgctxt "#30405"
 msgid "Important (Highest)"
 msgstr ""
 
-# empty strings from id 30406 to 30409
+#empty strings from id 30406 to 30409
 msgctxt "#30410"
 msgid "Automatic"
 msgstr ""
 
-# empty strings from id 30411 to 30419
+#empty strings from id 30411 to 30419
 msgctxt "#30420"
 msgid "One time (Scheduled by guide-based timer rule)"
 msgstr ""
 
+#empty strings from id 30421 to 30429
 msgctxt "#30430"
 msgid "Disabled"
-msgstr "Идвэхгүй болсон"
+msgstr ""
 
 msgctxt "#30431"
 msgid "Record if EPG title differs"
@@ -285,8 +291,8 @@ msgctxt "#30433"
 msgid "Record if EPG title and subtitle differs"
 msgstr ""
 
-# empty strings from id 30434 to 30499
-# notifications
+#empty strings from id 30434 to 30499
+#notifications
 msgctxt "#30500"
 msgid "Unable to connect to the DVBViewer Media Server"
 msgstr ""

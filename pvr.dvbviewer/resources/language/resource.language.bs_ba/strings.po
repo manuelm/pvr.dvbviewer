@@ -7,36 +7,36 @@ msgstr ""
 "Project-Id-Version: KODI Main\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2025-01-17 23:09+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-09-01 07:29+0000\n"
+"Last-Translator: SecularSteve <fairfull.playing@gmail.com>\n"
 "Language-Team: Bosnian (Bosnia and Herzegovina) <https://kodi.weblate.cloud/projects/kodi-add-ons-pvr-clients/pvr-dvbviewer/bs_ba/>\n"
 "Language: bs_ba\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.13\n"
 
 msgctxt "Addon Summary"
 msgid "Kodi's frontend for DVBViewer"
-msgstr ""
+msgstr "Kodijev frontend za DVBViewer"
 
 msgctxt "Addon Description"
 msgid "DVBViewer Media Server; supporting streaming of Live TV & Recordings, EPG, Timers."
-msgstr ""
+msgstr "DVBViewer medijski server; podržava prijenos uživo TV programa i snimaka, EPG, mjerače vremena."
 
 msgctxt "Addon Disclaimer"
 msgid "The authors are in no way responsible for failed recordings, incorrect timers, wasted hours, or any other undesirable effects."
-msgstr ""
+msgstr "Autori ni na koji način nisu odgovorni za neuspjela snimanja, netačne mjerače vremena, izgubljene sate ili bilo koje druge neželjene efekte."
 
 # settings labels
 msgctxt "#30000"
 msgid "DVBViewer Media Server IP Address"
-msgstr ""
+msgstr "IP adresa DVBViewer medijskog servera"
 
 msgctxt "#30001"
 msgid "Webinterface Port"
-msgstr ""
+msgstr "Port web sučelja"
 
 msgctxt "#30002"
 msgid "Username"
@@ -48,7 +48,7 @@ msgstr "Lozinka"
 
 msgctxt "#30004"
 msgid "Use Wake-on-LAN to wake up service"
-msgstr ""
+msgstr "Koristite Wake-on-LAN za buđenje usluge"
 
 msgctxt "#30005"
 msgid "MAC address"
@@ -56,29 +56,29 @@ msgstr "MAC adresa"
 
 msgctxt "#30006"
 msgid "Profile ID"
-msgstr ""
+msgstr "ID profila"
 
 # empty strings from id 30007 to 30009
 msgctxt "#30010"
 msgid "Use favourites instead of channel list"
-msgstr ""
+msgstr "Koristite favorite umjesto liste kanala"
 
 msgctxt "#30011"
 msgid "Use local favourites file"
-msgstr ""
+msgstr "Koristi lokalnu datoteku favorita"
 
 msgctxt "#30012"
 msgid "Select the favourites.xml file"
-msgstr ""
+msgstr "Odaberite datoteku favourites.xml"
 
 # empty strings from id 30013 to 30019
 msgctxt "#30020"
 msgid "Enable Timeshift"
-msgstr ""
+msgstr "Omogući vremenski pomak"
 
 msgctxt "#30021"
 msgid "Timeshift buffer path"
-msgstr ""
+msgstr "Putanja bafera vremenskog pomaka"
 
 msgctxt "#30025"
 msgid "Off"
@@ -86,62 +86,62 @@ msgstr "Isklj."
 
 msgctxt "#30026"
 msgid "On playback"
-msgstr ""
+msgstr "Pri reprodukciji"
 
 msgctxt "#30027"
 msgid "On pause"
-msgstr ""
+msgstr "Na pauzi"
 
 # empty strings from id 30028 to 30039
 msgctxt "#30040"
 msgid "Enable low performance mode (disables logos & thumbnails)"
-msgstr ""
+msgstr "Omogući način rada niskih performansi (onemogućava logotipe i sličice)"
 
 msgctxt "#30041"
 msgid "Custom Live TV timeout (0 to use default)"
-msgstr ""
+msgstr "Prilagođeno vrijeme čekanja za TV uživo (0 za korištenje zadanih postavki)"
 
 msgctxt "#30042"
 msgid "Stream read chunk size (0 for Kodi's default)"
-msgstr ""
+msgstr "Veličina bloka za čitanje streama (0 je zadana vrijednost za Kodi)"
 
 # empty strings from id 30043 to 30049
 msgctxt "#30050"
 msgid "Group recordings"
-msgstr ""
+msgstr "Grupni snimci"
 
 msgctxt "#30051"
 msgid "disabled"
-msgstr ""
+msgstr "onemogućeno"
 
 msgctxt "#30052"
 msgid "by recording directory"
-msgstr ""
+msgstr "po direktoriju snimanja"
 
 msgctxt "#30053"
 msgid "by recording date"
-msgstr ""
+msgstr "po datumu snimanja"
 
 msgctxt "#30054"
 msgid "by first letter"
-msgstr ""
+msgstr "po prvom slovu"
 
 msgctxt "#30055"
 msgid "by tv channel"
-msgstr ""
+msgstr "putem TV kanala"
 
 msgctxt "#30056"
 msgid "by series"
-msgstr ""
+msgstr "po serijama"
 
 msgctxt "#30057"
 msgid "by title"
-msgstr ""
+msgstr "po naslovu"
 
 # empty strings from id 30058 to 30059
 msgctxt "#30060"
 msgid "Put outline (e.g. subtitles) before plot"
-msgstr ""
+msgstr "Stavite nacrt (npr. titlove) prije radnje"
 
 msgctxt "#30061"
 msgid "Never"
@@ -149,11 +149,11 @@ msgstr "Nikada"
 
 msgctxt "#30062"
 msgid "In EPG only"
-msgstr ""
+msgstr "Samo u EPG-u"
 
 msgctxt "#30063"
 msgid "In recordings only"
-msgstr ""
+msgstr "Samo u snimcima"
 
 msgctxt "#30064"
 msgid "Always"
@@ -162,7 +162,7 @@ msgstr "Uvijek"
 # empty strings from id 30065 to 30069
 msgctxt "#30070"
 msgid "Enable transcoding"
-msgstr ""
+msgstr "Omogući transkodiranje"
 
 msgctxt "#30071"
 msgid "Off"
@@ -170,41 +170,41 @@ msgstr "Isklj."
 
 msgctxt "#30072"
 msgid "TS"
-msgstr ""
+msgstr "TS"
 
 msgctxt "#30073"
 msgid "WebM"
-msgstr ""
+msgstr "WebM"
 
 msgctxt "#30074"
 msgid "FLV"
-msgstr ""
+msgstr "FLV"
 
 # empty strings from id 30075 to 30076
 msgctxt "#30077"
 msgid "Transcoding URL parameters"
-msgstr ""
+msgstr "Transkodiranje URL parametara"
 
 # empty strings from id 30078 to 30079
 msgctxt "#30080"
 msgid "Enable EDL support"
-msgstr ""
+msgstr "Omogući EDL podršku"
 
 msgctxt "#30081"
 msgid "Start time padding"
-msgstr ""
+msgstr "Vremenski interval početka"
 
 msgctxt "#30082"
 msgid "Stop time padding"
-msgstr ""
+msgstr "Zaustavi vremenski popunjavanje"
 
 msgctxt "#30100"
 msgid "General"
-msgstr "Opšte"
+msgstr "Općenito"
 
 msgctxt "#30101"
 msgid "Advanced"
-msgstr ""
+msgstr "Napredno"
 
 msgctxt "#30102"
 msgid "Recordings"
@@ -218,7 +218,7 @@ msgstr "TV"
 # subsection labels
 msgctxt "#30110"
 msgid "Wake-on-LAN"
-msgstr ""
+msgstr "Wake-on-LAN"
 
 msgctxt "#30111"
 msgid "Favourites"
@@ -226,15 +226,15 @@ msgstr "Omiljeno"
 
 msgctxt "#30112"
 msgid "Timeshift"
-msgstr ""
+msgstr "Vremenski pomak"
 
 msgctxt "#30113"
 msgid "Edit Decision List"
-msgstr ""
+msgstr "Uredi listu odluka"
 
 msgctxt "#30114"
 msgid "Transcoding"
-msgstr ""
+msgstr "Transkodiranje"
 
 msgctxt "#30400"
 msgid "Default"
@@ -242,11 +242,11 @@ msgstr "Podrazumjevano"
 
 msgctxt "#30401"
 msgid "Unimportant (Lowest)"
-msgstr ""
+msgstr "Nevažno (najniže)"
 
 msgctxt "#30402"
 msgid "Low"
-msgstr "nizak"
+msgstr "Nisko"
 
 msgctxt "#30403"
 msgid "Normal"
@@ -254,21 +254,21 @@ msgstr "Normalno"
 
 msgctxt "#30404"
 msgid "High"
-msgstr "visok"
+msgstr "Visoko"
 
 msgctxt "#30405"
 msgid "Important (Highest)"
-msgstr ""
+msgstr "Važno (najvažnije)"
 
 # empty strings from id 30406 to 30409
 msgctxt "#30410"
 msgid "Automatic"
-msgstr ""
+msgstr "Automatski"
 
 # empty strings from id 30411 to 30419
 msgctxt "#30420"
 msgid "One time (Scheduled by guide-based timer rule)"
-msgstr ""
+msgstr "Jednokratno (Zakazano pravilom tajmera zasnovanog na vodiču)"
 
 msgctxt "#30430"
 msgid "Disabled"
@@ -276,78 +276,78 @@ msgstr "Onemogućeno"
 
 msgctxt "#30431"
 msgid "Record if EPG title differs"
-msgstr ""
+msgstr "Snimi ako se EPG naslov razlikuje"
 
 msgctxt "#30432"
 msgid "Record if EPG subtitle differs"
-msgstr ""
+msgstr "Snimanje ako se EPG titlovi razlikuju"
 
 msgctxt "#30433"
 msgid "Record if EPG title and subtitle differs"
-msgstr ""
+msgstr "Snimi ako se naslov i titl EPG-a razlikuju"
 
 # empty strings from id 30434 to 30499
 # notifications
 msgctxt "#30500"
 msgid "Unable to connect to the DVBViewer Media Server"
-msgstr ""
+msgstr "Nije moguće povezati se sa DVBViewer medijskim serverom"
 
 msgctxt "#30501"
 msgid "DVBViewer Media Server version %s or higher required"
-msgstr ""
+msgstr "Potrebna je DVBViewer Media Server verzija %s ili novija"
 
 msgctxt "#30502"
 msgid "Unable to parse channel list"
-msgstr ""
+msgstr "Nije moguće analizirati listu kanala"
 
 msgctxt "#30503"
 msgid "Check Kodi log for more information"
-msgstr ""
+msgstr "Za više informacija provjerite Kodi log"
 
 msgctxt "#30504"
 msgid "Unable to open local favourites.xml"
-msgstr ""
+msgstr "Nije moguće otvoriti datoteku local favorites.xml"
 
 msgctxt "#30505"
 msgid "Unable to parse favourites list"
-msgstr ""
+msgstr "Nije moguće analizirati listu favorita"
 
 msgctxt "#30506"
 msgid "Unable to parse timer list"
-msgstr ""
+msgstr "Nije moguće analizirati listu tajmera"
 
 msgctxt "#30507"
 msgid "Please reset the EPG database and restart Kodi afterwards"
-msgstr ""
+msgstr "Molimo vas da resetujete EPG bazu podataka i ponovo pokrenete Kodi nakon toga"
 
 msgctxt "#30508"
 msgid "Favourites contains unresolvable channel: %s"
-msgstr ""
+msgstr "Omiljeni sadržaj sadrži nerazlučivi kanal: %s"
 
 msgctxt "#30509"
 msgid "Favourites enabled but none defined"
-msgstr ""
+msgstr "Favoriti omogućeni, ali nijedan nije definisan"
 
 msgctxt "#30510"
 msgid "The time period cannot span more than 24 hours"
-msgstr ""
+msgstr "Vremenski period ne može biti duži od 24 sata"
 
 msgctxt "#30512"
 msgid "PVR is running with guest permissions"
-msgstr ""
+msgstr "PVR radi s dozvolama za goste"
 
 msgctxt "#30513"
 msgid "Search phrase cannot be empty"
-msgstr ""
+msgstr "Fraza za pretragu ne može biti prazna"
 
 msgctxt "#30514"
 msgid "Timeshift buffer path does not exist"
-msgstr ""
+msgstr "Putanja bafera vremenskog pomaka ne postoji"
 
 msgctxt "#30515"
 msgid "Unable to retrieve user data from the backend"
-msgstr ""
+msgstr "Nije moguće preuzeti korisničke podatke sa pozadinskog sistema"
 
 msgctxt "#30516"
 msgid "Unable to parse user data from the backend"
-msgstr ""
+msgstr "Nije moguće analizirati korisničke podatke iz pozadinskog sistema"
