@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: KODI Main\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2025-09-30 10:29+0000\n"
+"PO-Revision-Date: 2025-12-18 20:13+0000\n"
 "Last-Translator: Alexey <signfinder@gmail.com>\n"
 "Language-Team: Russian <https://kodi.weblate.cloud/projects/kodi-add-ons-pvr-clients/pvr-dvbviewer/ru_ru/>\n"
 "Language: ru_ru\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.13.3\n"
+"X-Generator: Weblate 5.15\n"
 
 msgctxt "Addon Summary"
 msgid "Kodi's frontend for DVBViewer"
-msgstr "Фронтэнд Kodi для DVBViewer"
+msgstr "Фронтенд Kodi для DVBViewer"
 
 msgctxt "Addon Description"
 msgid "DVBViewer Media Server; supporting streaming of Live TV & Recordings, EPG, Timers."
@@ -47,7 +47,7 @@ msgstr "Пароль"
 
 msgctxt "#30004"
 msgid "Use Wake-on-LAN to wake up service"
-msgstr "Использовать \"Пробуждение по сигналу из локальной сети\" для запуска приложения"
+msgstr "Использовать Wake-on-LAN для пробуждения сервиса"
 
 msgctxt "#30005"
 msgid "MAC address"
@@ -71,11 +71,11 @@ msgstr "Выбрать файл favourites.xml"
 
 msgctxt "#30020"
 msgid "Enable Timeshift"
-msgstr "Включить таймшифт"
+msgstr "Включить сдвиг по времени"
 
 msgctxt "#30021"
 msgid "Timeshift buffer path"
-msgstr "Путь к буферу таймшифт"
+msgstr "Путь к буферу сдвига по времени"
 
 msgctxt "#30025"
 msgid "Off"
@@ -83,7 +83,7 @@ msgstr "Выкл."
 
 msgctxt "#30026"
 msgid "On playback"
-msgstr "Воспроизведение"
+msgstr "Воспроизводится"
 
 msgctxt "#30027"
 msgid "On pause"
@@ -95,7 +95,7 @@ msgstr "Включить режим низкой производительно�
 
 msgctxt "#30041"
 msgid "Custom Live TV timeout (0 to use default)"
-msgstr "Пользовательская задержка для LiveTV (0 для использования по умолчанию)"
+msgstr "Пользовательская задержка для LiveTV (0 по умолчанию)"
 
 msgctxt "#30042"
 msgid "Stream read chunk size (0 for Kodi's default)"
@@ -111,7 +111,7 @@ msgstr "отключен"
 
 msgctxt "#30052"
 msgid "by recording directory"
-msgstr "по папке записей"
+msgstr "по каталогу записей"
 
 msgctxt "#30053"
 msgid "by recording date"
@@ -155,7 +155,7 @@ msgstr "Всегда"
 
 msgctxt "#30070"
 msgid "Enable transcoding"
-msgstr "Включить транскодинг"
+msgstr "Включить транскодирование"
 
 msgctxt "#30071"
 msgid "Off"
@@ -175,7 +175,7 @@ msgstr "FLV"
 
 msgctxt "#30077"
 msgid "Transcoding URL parameters"
-msgstr "Параметры URL перекодирования"
+msgstr "Параметры транскодирования URL"
 
 msgctxt "#30080"
 msgid "Enable EDL support"
@@ -183,11 +183,11 @@ msgstr "Включить поддержку EDL"
 
 msgctxt "#30081"
 msgid "Start time padding"
-msgstr "Время начала"
+msgstr "Заполнение времени начала"
 
 msgctxt "#30082"
 msgid "Stop time padding"
-msgstr "Время окончания"
+msgstr "Заполнение времени окончания"
 
 msgctxt "#30100"
 msgid "General"
@@ -207,7 +207,7 @@ msgstr "ТВ"
 
 msgctxt "#30110"
 msgid "Wake-on-LAN"
-msgstr "Разбудить по сигналу из локальной сети"
+msgstr "Wake-on-LAN"
 
 msgctxt "#30111"
 msgid "Favourites"
@@ -215,7 +215,7 @@ msgstr "Избранное"
 
 msgctxt "#30112"
 msgid "Timeshift"
-msgstr "Таймшифт"
+msgstr "Сдвиг по времени"
 
 msgctxt "#30113"
 msgid "Edit Decision List"
@@ -223,11 +223,11 @@ msgstr "Редактировать список определений"
 
 msgctxt "#30114"
 msgid "Transcoding"
-msgstr "Перекодирование"
+msgstr "Транскодирование"
 
 msgctxt "#30400"
 msgid "Default"
-msgstr "По-умолчанию"
+msgstr "По умолчанию"
 
 msgctxt "#30401"
 msgid "Unimportant (Lowest)"
@@ -283,11 +283,11 @@ msgstr "Требуется DVBViewer медиасервер версии %s ил
 
 msgctxt "#30502"
 msgid "Unable to parse channel list"
-msgstr "Не удалось загрузить список каналов"
+msgstr "Не удалось обработать список каналов"
 
 msgctxt "#30503"
 msgid "Check Kodi log for more information"
-msgstr "Проверьте Kodi лог файл чтобы получить больше информации"
+msgstr "Проверьте Kodi лог файл, чтобы получить больше информации"
 
 msgctxt "#30504"
 msgid "Unable to open local favourites.xml"
@@ -295,23 +295,23 @@ msgstr "Не удалось открыть локальный файл favourite
 
 msgctxt "#30505"
 msgid "Unable to parse favourites list"
-msgstr "Не удалось загрузить список избранных"
+msgstr "Не удалось обработать список избранного"
 
 msgctxt "#30506"
 msgid "Unable to parse timer list"
-msgstr "Не удалось загрузить список таймеров"
+msgstr "Не удалось обработать список таймеров"
 
 msgctxt "#30507"
 msgid "Please reset the EPG database and restart Kodi afterwards"
-msgstr "Пожалуйста, сбросьте базу данных EPG и перезапустите Kodi после этого"
+msgstr "Пожалуйста, сбросьте базу данных EPG и перезапустите Kodi"
 
 msgctxt "#30508"
 msgid "Favourites contains unresolvable channel: %s"
-msgstr "Понравившиеся содержат неразрешимый канал: %s"
+msgstr "Избранное содержит неразрешимый канал: %s"
 
 msgctxt "#30509"
 msgid "Favourites enabled but none defined"
-msgstr "Понравившиеся включены но не определены"
+msgstr "Избранное включено, но не определено"
 
 msgctxt "#30510"
 msgid "The time period cannot span more than 24 hours"
@@ -319,7 +319,7 @@ msgstr "Период времени не может составлять бол�
 
 msgctxt "#30512"
 msgid "PVR is running with guest permissions"
-msgstr "PVR запущен от имени гостевой учетной записи"
+msgstr "PVR запущен с правами гостя"
 
 msgctxt "#30513"
 msgid "Search phrase cannot be empty"
@@ -327,7 +327,7 @@ msgstr "Поисковая фраза не может быть пустой"
 
 msgctxt "#30514"
 msgid "Timeshift buffer path does not exist"
-msgstr "Отсутствует путь для буферизации отложенного просмотра"
+msgstr "Отсутствует путь для буфера сдвига по времени"
 
 msgctxt "#30515"
 msgid "Unable to retrieve user data from the backend"
@@ -335,7 +335,7 @@ msgstr "Невозможно получить данные с сервера"
 
 msgctxt "#30516"
 msgid "Unable to parse user data from the backend"
-msgstr "Невозможно провести структурный разбор данных с сервера"
+msgstr "Невозможно получить данные пользователя с сервера"
 
 #~ msgctxt "#30511"
 #~ msgid "EDL support requires DVBViewer Media Server %s or higher"
