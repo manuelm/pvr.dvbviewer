@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: KODI Main\n"
 "Report-Msgid-Bugs-To: translations@kodi.tv\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2025-07-28 01:31+0000\n"
-"Last-Translator: Kryštof Černý <cleverline1mc@gmail.com>\n"
+"PO-Revision-Date: 2026-07-06 15:50+0000\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <https://kodi.weblate.cloud/projects/kodi-add-ons-pvr-clients/pvr-dvbviewer/cs_cz/>\n"
 "Language: cs_cz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 2026.7\n"
 
 msgctxt "Addon Summary"
 msgid "Kodi's frontend for DVBViewer"
@@ -23,15 +23,15 @@ msgstr "Rozhraní Kodi pro DVBViewer"
 
 msgctxt "Addon Description"
 msgid "DVBViewer Media Server; supporting streaming of Live TV & Recordings, EPG, Timers."
-msgstr "Rozhraní služby nahrávání DVBViewer; podporuje streamování živého vysílání a nahrávek, televizní program, časovače."
+msgstr "DVBViewer Media Server; podporuje streamování živé TV a nahrávek, EPG a časovače."
 
 msgctxt "Addon Disclaimer"
 msgid "The authors are in no way responsible for failed recordings, incorrect timers, wasted hours, or any other undesirable effects."
-msgstr "Tento software není stabilní! Autoři nejsou žádným způsobem zodpovědní za neúspěšná nahrávání, chybné časovače, ztracený čas nebo jakékoliv jiné nežádoucí výsledky."
+msgstr "Autoři nenesou žádnou odpovědnost za neúspěšná nahrávání, nesprávné časovače, ztracený čas ani jakékoli jiné nežádoucí následky."
 
 msgctxt "#30000"
 msgid "DVBViewer Media Server IP Address"
-msgstr "IP adresa mediálního serveru DVBVieweru"
+msgstr "IP adresa DVBViewer Media Serveru"
 
 msgctxt "#30001"
 msgid "Webinterface Port"
@@ -47,7 +47,7 @@ msgstr "Heslo"
 
 msgctxt "#30004"
 msgid "Use Wake-on-LAN to wake up service"
-msgstr "Použít WakeOnLAN k probuzení služby"
+msgstr "Používat Wake-on-LAN k probuzení služby"
 
 msgctxt "#30005"
 msgid "MAC address"
@@ -79,7 +79,7 @@ msgstr "Cesta k vyrovnávací paměti časového posunu"
 
 msgctxt "#30025"
 msgid "Off"
-msgstr "Vypnout"
+msgstr "Vypnuto"
 
 msgctxt "#30026"
 msgid "On playback"
@@ -95,11 +95,11 @@ msgstr "Povolit režim nízkého výkonu (zakáže loga a náhledy)"
 
 msgctxt "#30041"
 msgid "Custom Live TV timeout (0 to use default)"
-msgstr "Vlastní časový limit živého vysílání (0 pro použití výchozího)"
+msgstr "Vlastní časový limit živé TV (0 pro použití výchozího)"
 
 msgctxt "#30042"
 msgid "Stream read chunk size (0 for Kodi's default)"
-msgstr "Velikost bloku dat čtení streamu (0 pro výchozí Kodi)"
+msgstr "Velikost bloku pro čtení streamu (0 pro výchozí hodnotu Kodi)"
 
 msgctxt "#30050"
 msgid "Group recordings"
@@ -143,7 +143,7 @@ msgstr "Nikdy"
 
 msgctxt "#30062"
 msgid "In EPG only"
-msgstr "Pouze v televizním programu"
+msgstr "Pouze v EPG"
 
 msgctxt "#30063"
 msgid "In recordings only"
@@ -159,7 +159,7 @@ msgstr "Povolit překódování"
 
 msgctxt "#30071"
 msgid "Off"
-msgstr "Vypnout"
+msgstr "Vypnuto"
 
 msgctxt "#30072"
 msgid "TS"
@@ -175,7 +175,7 @@ msgstr "FLV"
 
 msgctxt "#30077"
 msgid "Transcoding URL parameters"
-msgstr "Parametry převodu URL"
+msgstr "Parametry URL pro překódování"
 
 msgctxt "#30080"
 msgid "Enable EDL support"
@@ -183,11 +183,11 @@ msgstr "Povolit podporu EDL"
 
 msgctxt "#30081"
 msgid "Start time padding"
-msgstr "Odsazení času začátku"
+msgstr "Rezerva před začátkem"
 
 msgctxt "#30082"
 msgid "Stop time padding"
-msgstr "Odsazení času zastavení"
+msgstr "Rezerva po konci"
 
 msgctxt "#30100"
 msgid "General"
@@ -203,7 +203,7 @@ msgstr "Nahrávky"
 
 msgctxt "#30103"
 msgid "Live TV"
-msgstr "Živé vysílání"
+msgstr "Živá TV"
 
 msgctxt "#30110"
 msgid "Wake-on-LAN"
@@ -219,7 +219,7 @@ msgstr "Časový posun"
 
 msgctxt "#30113"
 msgid "Edit Decision List"
-msgstr "Upravit seznam rozhodnutí"
+msgstr "EDL"
 
 msgctxt "#30114"
 msgid "Transcoding"
@@ -255,7 +255,7 @@ msgstr "Automatické"
 
 msgctxt "#30420"
 msgid "One time (Scheduled by guide-based timer rule)"
-msgstr "Jednou (naplánováno pravidlem časovače)"
+msgstr "Jednorázově (naplánováno pravidlem časovače podle TV programu)"
 
 msgctxt "#30430"
 msgid "Disabled"
@@ -263,23 +263,23 @@ msgstr "Zakázáno"
 
 msgctxt "#30431"
 msgid "Record if EPG title differs"
-msgstr "Nahrávat, pokud se liší název televizního programu"
+msgstr "Nahrávat, pokud se liší název v EPG"
 
 msgctxt "#30432"
 msgid "Record if EPG subtitle differs"
-msgstr "Nahrávat, pokud se liší titulek televizního programu"
+msgstr "Nahrávat, pokud se liší podtitul v EPG"
 
 msgctxt "#30433"
 msgid "Record if EPG title and subtitle differs"
-msgstr "Nahrávat, pokud se liší název a titulek televizního programu"
+msgstr "Nahrávat, pokud se liší název i podtitul v EPG"
 
 msgctxt "#30500"
 msgid "Unable to connect to the DVBViewer Media Server"
-msgstr "Nelze se spojit s mediálním serverem DBVieweru"
+msgstr "Nelze se připojit k DVBViewer Media Serveru"
 
 msgctxt "#30501"
 msgid "DVBViewer Media Server version %s or higher required"
-msgstr "Je vyžadován mediální server DVBVieweru verze %s nebo vyšší"
+msgstr "Je vyžadován DVBViewer Media Server verze %s nebo novější"
 
 msgctxt "#30502"
 msgid "Unable to parse channel list"
@@ -287,7 +287,7 @@ msgstr "Nelze analyzovat seznam kanálů"
 
 msgctxt "#30503"
 msgid "Check Kodi log for more information"
-msgstr "Více informací najdete v záznamu událostí (log) v Kodi"
+msgstr "Další informace najdete v protokolu Kodi"
 
 msgctxt "#30504"
 msgid "Unable to open local favourites.xml"
@@ -303,11 +303,11 @@ msgstr "Nedaří se analyzovat seznam časovačů"
 
 msgctxt "#30507"
 msgid "Please reset the EPG database and restart Kodi afterwards"
-msgstr "Obnovte databázi televizního programu a poté restartujte Kodi"
+msgstr "Resetujte databázi EPG a poté restartujte Kodi"
 
 msgctxt "#30508"
 msgid "Favourites contains unresolvable channel: %s"
-msgstr "Oblíbené obsahují neřešitelný kanál: %s"
+msgstr "Oblíbené obsahují kanál, který nelze vyřešit: %s"
 
 msgctxt "#30509"
 msgid "Favourites enabled but none defined"
@@ -315,7 +315,7 @@ msgstr "Oblíbené jsou povoleny, ale nejsou definovány"
 
 msgctxt "#30510"
 msgid "The time period cannot span more than 24 hours"
-msgstr "Časové období nemůže překlenout více než 24 hodin"
+msgstr "Časové období nesmí přesáhnout 24 hodin"
 
 msgctxt "#30512"
 msgid "PVR is running with guest permissions"
