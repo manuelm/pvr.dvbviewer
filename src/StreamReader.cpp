@@ -33,7 +33,7 @@ StreamReader::~StreamReader(void)
 bool StreamReader::Start()
 {
   return m_streamHandle.CURLOpen(ADDON_READ_TRUNCATED | ADDON_READ_NO_CACHE
-      | READ_AUDIO_VIDEO);
+      | ADDON_READ_AUDIO_VIDEO);
 }
 
 ssize_t StreamReader::ReadData(unsigned char *buffer, unsigned int size)
