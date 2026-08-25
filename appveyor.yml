@@ -5,10 +5,10 @@ environment:
   CONFIG: Debug
   KODI_BRANCH: master # usually synced with APPVEYOR_REPO_BRANCH
   matrix:
-    #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
-    #  PLATFORM: win32
-    #  MSVC_PLATFORM: x86
-    #  CONFIG: RelWithDebInfo
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+      PLATFORM: win32
+      MSVC_PLATFORM: x86
+      CONFIG: RelWithDebInfo
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
       PLATFORM: win64
       MSVC_PLATFORM: amd64
@@ -61,7 +61,7 @@ before_build:
 
 build_script:
   # Setup Visual Studio compiler environment
-  - cmd: call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" %MSVC_PLATFORM%
+  - cmd: call "%VSINSTALLDIR%VC\Auxiliary\Build\vcvarsall.bat" %MSVC_PLATFORM%
 
   # Build addon
   - ps: |
