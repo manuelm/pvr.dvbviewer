@@ -72,4 +72,8 @@ jobs:
     - task: CMake@1
       inputs:
         workingDirectory: 'build'
-        cmakeArgs: '--build . --config $(CONFIGURATION) --target $(app_id) package-addons'
+        cmakeArgs: '--build . --config $(CONFIGURATION) --target package-addons'
+
+    - publish: $(Pipeline.Workspace)/$(app_id)/zips
+      artifact: $(app_id)
+
