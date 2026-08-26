@@ -75,5 +75,5 @@ jobs:
         cmakeArgs: '--build . --config $(CONFIGURATION) --target package-addons'
 
     - publish: $(Pipeline.Workspace)/$(app_id)/zips
-      artifact: $(app_id)
+      artifact: $(app_id)-$(System.JobName)
 
